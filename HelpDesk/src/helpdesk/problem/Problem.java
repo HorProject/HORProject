@@ -1,7 +1,7 @@
-package helpdesk;
+package helpdesk.problem;
 
 public class Problem {
-    String problem;
+    private String problem;
 
     public Problem(String problem) {
         this.problem = problem;
@@ -19,11 +19,23 @@ public class Problem {
         int nowP = Integer.parseInt(problem.substring(4, 5));
         return nowP;
     }
-    public int getProblemState() {
+    public String getProblemStatus() {
         int problemState = Integer.parseInt(problem.substring(5, 6));
-        return problemState;
+        String status = null;
+        switch (problemState) {
+            case 0 :
+                status = "รอการดำเนินการ";
+                break;
+            case 1 :
+                status = "กำลังดำเนินการ";
+                break;
+            case 2 :
+                status = "เสร็จสิ้น";
+                break;
+        }
+        return status;
     }
-    public void setProblemState(int state) {
+    public void setProblemStatus(int state) {
         problem = problem.substring(0, 5);
         problem += state;
     }
