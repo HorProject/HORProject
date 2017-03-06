@@ -1,6 +1,5 @@
 package helpdesk;
 
-//import java.sql.*;
 import helpdesk.problem.Problem;
 public class Room {
     private static String hName;
@@ -10,13 +9,6 @@ public class Room {
     public Room(String room, String hName) {
         this.room = room;
         Room.hName = hName;
-//        Class.forName("com.mysql.jdbc.Driver");
-//        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/abc?useUnicode=true&characterEncoding=UTF-8","smit","admin");
-//        PreparedStatement ps = connect.prepareStatement("SELECT * FROM user");
-//        ResultSet result = ps.executeQuery();
-//        while() {}
-//        ps.close();
-//        connect.close();
     }
     
     public int getFloor(){
