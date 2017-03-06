@@ -2,7 +2,7 @@ package helpdesk.problem;
 
 public interface ProblemName {
     String[] PROBLEMNAME = {
-        "กรประตูชำรุด",
+        "ประตูชำรุด",
         "กระจกหน้าต่างแตก",
         "มุ้งลวดขาด",
         "ฝ้า/เพดานชำรุด",

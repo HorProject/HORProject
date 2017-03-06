@@ -1,8 +1,8 @@
 package helpdesk;
 
-import helpdesk.problem.Problem;
 //import java.sql.*;
-public class ShowListP {
+import helpdesk.problem.ProblemName;
+public class ShowListP implements ProblemName{
     private String room;
     private int status;
     private String hName;
@@ -19,10 +19,13 @@ public class ShowListP {
         if (status == 1) {
     //        PreparedStatement ps = connect.prepareStatement("SELECT * FROM user");
     //        ResultSet result = ps.executeQuery();
-            Problem[] p = new Problem[27];
     //        while() {}
-            Room r = new Room(room, p);
-            System.out.println();
+            Room r = new Room(room, hName);
+            for (int i = 0; i < 27; i++) {
+                if(r.getNowP(i) > 0){
+                    System.out.println(PROBLEMNAME[i]);
+                }
+            }
         }
         else {
     //        PreparedStatement ps = connect.prepareStatement("SELECT * FROM user");

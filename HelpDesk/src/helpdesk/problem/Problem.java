@@ -1,10 +1,14 @@
 package helpdesk.problem;
 
 public class Problem {
+    private static String hName;
+    private String room;
     private String problem;
 
-    public Problem(String problem) {
+    public Problem(String room, String problem, String hName) {
+        this.room = room;
         this.problem = problem;
+        Problem.hName = hName;
     }
     
     public int getLastYearP() {
