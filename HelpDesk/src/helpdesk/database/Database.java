@@ -33,6 +33,9 @@ public class Database {
         String[] problem = new String[27];
         return problem;
     }
+    public void update(String table, String column, String value, String condition) throws Exception {
+        stmt.executeUpdate("UPDATE " + table + " SET " + column + " = " + value + " WHERE " + condition);
+    }
     public void nextRow() throws Exception {
         rs.next();
     }
