@@ -39,8 +39,10 @@ public class Database {
     public void nextRow() throws Exception {
         rs.next();
     }
-    public void close() throws Exception {
+    public void closeStatement() throws Exception {
         rs.close();
+    }
+    public void closeConnect() throws Exception {
         connect.close();
     }
 }
