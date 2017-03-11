@@ -11,7 +11,7 @@ public class Database {
     }
     
     public void connect() throws Exception {
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/abc?useUnicode=true&characterEncoding=UTF-8","smit","admin");
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/horsql","root","");
         stmt = connect.createStatement();
     }
     public void statement(String select) throws Exception {
