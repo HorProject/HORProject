@@ -16,7 +16,7 @@ public class Problem {
         this.causeId = causeId;
         this.room = room;
         try {
-            Connection connect = new ConnectionBuilder().getConnection();
+            Connection connect = ConnectionBuilder.getConnection();
             PreparedStatement ps = connect.prepareStatement(
                     "SELECT recordproblem.problemPast, recordproblem.problemCurrent, recordproblem.problemNow, problem.problemId, problem.problemName, status.statusName "
                             + "FROM recordproblem "
@@ -59,7 +59,6 @@ public class Problem {
     public void setProblemC(int problemC) {
         this.problemC = problemC;
     }
-
     public int getProblemN() {
         return problemN;
     }
