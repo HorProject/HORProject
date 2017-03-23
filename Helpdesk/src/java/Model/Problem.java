@@ -8,6 +8,7 @@ public class Problem {
     private int problemC;
     private int problemN;
     private String name;
+    private int problemId;
     private String status;
     private int room;
 
@@ -17,7 +18,7 @@ public class Problem {
         try {
             Connection connect = new ConnectionBuilder().getConnection();
             PreparedStatement ps = connect.prepareStatement(
-                    "SELECT recordproblem.problemPast, recordproblem.problemCurrent, recordproblem.problemNow, problem.problemName, status.statusName "
+                    "SELECT recordproblem.problemPast, recordproblem.problemCurrent, recordproblem.problemNow, problem.problemId, problem.problemName, status.statusName "
                             + "FROM recordproblem "
                             + "INNER JOIN problem ON recordproblem.Cause_Problem_problemId = problem.problemId "
                             + "INNER JOIN status ON recordproblem.Cause_status_statusId = status.statusId "
@@ -70,6 +71,12 @@ public class Problem {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public int getProblemId() {
+        return problemId;
+    }
+    public void setProblemId(int problemId) {
+        this.problemId = problemId;
     }
     public String getStatus() {
         return status;
