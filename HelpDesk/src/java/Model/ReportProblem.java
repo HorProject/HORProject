@@ -62,7 +62,35 @@ public class ReportProblem {
             Connection connect = ConnectionBuilder.getConnection();
             PreparedStatement ps;
             if (have) {
-                
+                int causeId = 0;
+                int problemC = 0;
+                int problemN = 0;
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).getProblemId() == problemId) {
+                        causeId = list.get(i).getCauseId();
+                        problemC = list.get(i).getProblemC();
+                        problemN = list.get(i).getProblemN();
+                        break;
+                    }
+                }
+                ps = connect.prepareStatement(
+                        "UPDATE cause "
+                                + "SET status_statusId = ? "
+                                + "WHERE = ?");
+                ps.setInt(1, 1);
+                ps.setInt(2, causeId);
+                int record = ps.executeUpdate();
+                ps.close();
+                problemC += problemN;
+                ps = connect.prepareStatement(
+                        "UPDATE recordProblem "
+                                + "SET problemCurrent = ? , problemNow = ? "
+                                + "WHERE = ?");
+                ps.setInt(1,problemC);
+                ps.setInt(2,1);
+                ps.setInt(3,causeId);
+                record = ps.executeUpdate();
+                ps.close();
             }
             else {
                 ps = connect.prepareStatement(
