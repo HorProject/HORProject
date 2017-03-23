@@ -56,7 +56,7 @@ public class ListProblem {
             ps.close();
             connect.close();
         }
-        catch(SQLException e) {
+        catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         catch(Exception e) {

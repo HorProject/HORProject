@@ -41,7 +41,7 @@ public class ReportProblem {
             ps.close();
             connect.close();
         }
-        catch(SQLException e) {
+        catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         catch(Exception e) {
@@ -51,10 +51,52 @@ public class ReportProblem {
     }   
     
     public void report(int problemId){
-        
-        
-            
-            
+        boolean have = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getProblemId() == problemId) {
+                have = true;
+                break;
+            }
+        }
+        try {
+            Connection connect = ConnectionBuilder.getConnection();
+            PreparedStatement ps;
+            if (have) {
+                
+            }
+            else {
+                ps = connect.prepareStatement(
+                        "INSERT INTO expense(expensesId , expensePrice , expenseDes )"
+                                + "VALUES (null,null,null)");
+                int record = ps.executeUpdate();
+                ps.close();
+                ps = connect.prepareStatement(
+                        "INSERT INTO cause(causeId , expense_expensesId , Problem_problemId , status_statusId , Room_roomId , Room_Dormitory_dormId)"
+                                + "VALUES (null,(SELECT MAX(expensesId) FROM expense),?,?,?,?)");
+                ps.setInt(1, problemId);
+                ps.setInt(2, 1);
+                ps.setInt(3, roomId);
+                ps.setInt(4, dormId);
+                record = ps.executeUpdate();
+                ps.close();
+                ps = connect.prepareStatement(
+                        "INSERT INTO recordproblem(problemPast, problemCurrent, problemNow, Cause_causeId, Cause_expense_expensesId, Cause_Problem_problemId, Cause_status_statusId)"
+                                + "VALUES (?, ?, ?, (SELECT MAX(causeId) FROM cause), (SELECT MAX(expensesId) FROM expense), ?, ?)");
+                ps.setInt(1, 00);
+                ps.setInt(2, 00);
+                ps.setInt(3, 1);
+                ps.setInt(4, problemId);
+                ps.setInt(5, 1);
+                record = ps.executeUpdate();
+                ps.close();
+            }
+        }
+        catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }  
         
 }
