@@ -12,14 +12,38 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Show List Problem</title>
     </head>
     <body>
-        <% ListProblem d = (ListProblem)request.getAttribute("message"); %>
-        <% ArrayList<Problem> list = d.getList(); %>
+        <% ListProblem listP = (ListProblem)request.getAttribute("message"); %>
         <h1>List Problem</h1>
-        <% for(int i = 0; i < list.size(); i++){ %>
-        <div>list[i]</div>
-        <% } %>
+        <table>
+            <% if(listP.getStatus().equalsIgnoreCase("student")) { %>
+                <tr>
+                    <th></th>
+                    <th>problem name</th>
+                </tr>
+                <% for(int i = 0; i < listP.getList().size(); i++) { %>
+                    <tr>
+                        <td> <%= (i+1) %> </td>
+                        <td> <%= listP.getList().get(i).getName() %> </td>
+                    </tr>
+                <% } %>
+            <% } else { %>
+                <tr>
+                    <th></th>
+                    <th>problem name</th>
+                    <th>room</th>
+                </tr>
+                <% for(int i = 0; i < listP.getList().size(); i++){ %>
+                    <tr>
+                        <td> <%= (i+1) %> </td>
+                        <td> <%= listP.getList().get(i).getName() %> </td>
+                        <td> <%= listP.getList().get(i).getRoom() %> </td>
+                    </tr>
+                <% } %>
+            <% } %>
+            <tr></tr>
+        </table>
     </body>
 </html>

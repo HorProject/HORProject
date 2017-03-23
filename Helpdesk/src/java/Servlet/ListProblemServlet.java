@@ -32,9 +32,9 @@ public class ListProblemServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ListProblem lp = Model.ListProblem.getShowListProblem(1);
+        ListProblem listP = Model.ListProblem.getShowListProblem(1);
         String target = "/ShowListProblem.jsp";
-        request.setAttribute("message", lp);
+        request.setAttribute("message", listP);
         getServletContext().getRequestDispatcher(target).forward(request, response);
     }
 

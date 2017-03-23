@@ -9,7 +9,7 @@ public class ConnectionBuilder {
     private static final String password = "KkiSNdavSE";
     public static Connection getConnection() throws SQLException {
         Connection con = null;
-        con = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/" + dbName, username , password);
+        con = DriverManager.getConnection("jdbc:mysql://" + host + ":3306/?characterEncoding=utf8" + dbName, username , password);
         return con;
     }
 }

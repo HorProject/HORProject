@@ -7,6 +7,7 @@ public class ListProblem {
     private long userId;
     private String name;
     private String surname;
+    private String status;
     private ArrayList<Problem> list;
 
     public ListProblem() {
@@ -20,46 +21,52 @@ public class ListProblem {
             PreparedStatement ps = connect.prepareStatement("SELECT userType, userFirstName, userLastName FORM user WHERE userId = ?");
             ps.setLong(1,userId);
             ResultSet result = ps.executeQuery();
-            int status = 0;
             while(result.next()){
                 name = result.getString("userFirstName");
                 surname = result.getString("userLastName");
-                status = result.getInt("userType");
+                status = result.getString("userType");
             }
             ps.close();
-            if(status == 1){
+            if(status.equalsIgnoreCase("student")){
                 ps = connect.prepareStatement(
-                        "SELECT user.userId, renter.renterId, renter_has_room.Room_roomId, cause.causeId, cause.Problem_problemId "
+                        "SELECT user.userId, renter.renterId, renter_has_room.Room_roomId, room.roomNo, cause.causeId, cause.Problem_problemId "
                                 + "FROM user "
                                 + "INNER JOIN renter ON user.userId = renter.renterId "
                                 + "INNER JOIN renter_has_room ON renter.renterId = renter_has_room.Renter_renterId "
-                                + "INNER JOIN cause ON renter_has_room.Room_roomId = cause.Room_roomId "
+                                + "INNER JOIN room ON renter_has_room.Room_roomId = room.roomId "
+                                + "INNER JOIN cause ON room.roomId = cause.Room_roomId "
                                 + "WHERE userId = ? "
                                 + "ORDER BY cause.Problem_problemId");
-                ps.setLong(1,userId);
             }
             else {
                 ps = connect.prepareStatement(
-                        "SELECT user.userId, dormitory.dormId, cause.causeId, cause.Room_roomId, cause.Problem_problemId "
+                        "SELECT user.userId, dormitory.dormId, room.roomNo, cause.causeId, cause.Room_roomId, cause.Problem_problemId "
                                 + "FROM user "
                                 + "INNER JOIN dormitory ON user.userId = dormitory.User_userId "
-                                + "INNER JOIN cause ON dormitory.dormId = cause.Room_Dormitory_dormId "
+                                + "INNER JOIN room ON dormitory.dormId = room.Dormitory_dormId "
+                                + "INNER JOIN cause ON room.Dormitory_dormId = cause.Room_Dormitory_dormId "
                                 + "WHERE userId = ? "
                                 + "ORDER BY cause.Room_roomId, cause.Problem_problemId");
-                ps.setLong(1,userId);
             }
+            ps.setLong(1,userId);
             result = ps.executeQuery();
             while(result.next()){
-                list.add(new Problem(result.getInt("causeId")));
+                list.add(new Problem(result.getInt("causeId"), result.getInt("roomId")));
             }
             ps.close();
             connect.close();
         }
-        catch(Exception e) {
+        catch(SQLException e) {
             e.printStackTrace();
         }
     }
 
+    public long getUserId() {
+        return userId;
+    }
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
     public String getName() {
         return name;
     }
@@ -71,6 +78,12 @@ public class ListProblem {
     }
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
     public ArrayList<Problem> getList() {
         return list;
