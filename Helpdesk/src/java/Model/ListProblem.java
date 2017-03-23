@@ -15,10 +15,10 @@ public class ListProblem {
     }
     public ListProblem(long userId) {
         this();
+        this.userId = userId;
         try {
-            this.userId = userId;
-            Connection connect = ConnectionBuilder.getConnection();
-            PreparedStatement ps = connect.prepareStatement("SELECT userType, userFirstName, userLastName FORM user WHERE userId = ?");
+            Connection connect = new ConnectionBuilder().getConnection();
+            PreparedStatement ps = connect.prepareStatement("SELECT userType, userFirstName, userLastName FROM user WHERE userId = ?");
             ps.setLong(1,userId);
             ResultSet result = ps.executeQuery();
             while(result.next()){
@@ -51,12 +51,15 @@ public class ListProblem {
             ps.setLong(1,userId);
             result = ps.executeQuery();
             while(result.next()){
-                list.add(new Problem(result.getInt("causeId"), result.getInt("roomId")));
+                list.add(new Problem(result.getInt("causeId"), result.getInt("roomNo")));
             }
             ps.close();
             connect.close();
         }
         catch(SQLException e) {
+            e.printStackTrace();
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
     }

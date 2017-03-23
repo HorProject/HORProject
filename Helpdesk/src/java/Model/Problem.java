@@ -15,12 +15,12 @@ public class Problem {
         this.causeId = causeId;
         this.room = room;
         try {
-            Connection connect = ConnectionBuilder.getConnection();
+            Connection connect = new ConnectionBuilder().getConnection();
             PreparedStatement ps = connect.prepareStatement(
                     "SELECT recordproblem.problemPast, recordproblem.problemCurrent, recordproblem.problemNow, problem.problemName, status.statusName "
                             + "FROM recordproblem "
                             + "INNER JOIN problem ON recordproblem.Cause_Problem_problemId = problem.problemId "
-                            + "INNER JOIN STATUS ON recordproblem.Cause_status_statusId = status.statusId "
+                            + "INNER JOIN status ON recordproblem.Cause_status_statusId = status.statusId "
                             + "WHERE recordproblem.Cause_causeId = ? ");
             ps.setInt(1,causeId);
             ResultSet result = ps.executeQuery();
@@ -32,7 +32,10 @@ public class Problem {
                 status = result.getString("statusName");
             }
         }
-        catch(SQLException e){
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
     }
