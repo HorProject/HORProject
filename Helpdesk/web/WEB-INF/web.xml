@@ -4,9 +4,17 @@
         <servlet-name>ShowListProblemServlet</servlet-name>
         <servlet-class>Servlet.ListProblemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportProblemServlet</servlet-name>
+        <servlet-class>Servlet.ReportProblemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShowListProblemServlet</servlet-name>
         <url-pattern>/ShowListProblemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportProblemServlet</servlet-name>
+        <url-pattern>/ReportProblemServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

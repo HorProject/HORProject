@@ -126,7 +126,67 @@ public class ReportProblem {
             e.printStackTrace();
         }
     }  
-        
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public int getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public int getRoomNo() {
+        return roomNo;
+    }
+
+    public void setRoomNo(int roomNo) {
+        this.roomNo = roomNo;
+    }
+
+    public int getDormId() {
+        return dormId;
+    }
+
+    public void setDormId(int dormId) {
+        this.dormId = dormId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public ArrayList<Problem> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<Problem> list) {
+        this.list = list;
+    }   
+    
+    public static ReportProblem getReportProblem(long userId){      
+        ReportProblem rp = new ReportProblem(userId);
+        return rp;
+    }
 }
     
 
