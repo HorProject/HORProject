@@ -8,6 +8,10 @@
         <servlet-name>ListStatus</servlet-name>
         <servlet-class>Servlet.ListStatusServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportProblemServlet</servlet-name>
+        <servlet-class>Servlet.ReportProblemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ShowListProblemServlet</servlet-name>
         <url-pattern>/ShowListProblemServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ListStatus</servlet-name>
         <url-pattern>/ListStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportProblemServlet</servlet-name>
+        <url-pattern>/ReportProblemServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
