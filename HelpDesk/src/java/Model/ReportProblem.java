@@ -3,7 +3,7 @@ package Model;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ReportProblem {
+public class ReportProblem extends ProblemName{
     private long userId;
     private int roomId;
     private int roomNo;
@@ -12,7 +12,8 @@ public class ReportProblem {
     private String surname;
     private ArrayList<Problem> list;
     
-    public ReportProblem(long userId){    
+    public ReportProblem(long userId){
+        super();
         this.userId = userId;
         try{
             Connection connect = ConnectionBuilder.getConnection();

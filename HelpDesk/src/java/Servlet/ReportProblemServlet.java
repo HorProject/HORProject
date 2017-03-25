@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+
+import Model.ReportProblem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,18 +32,12 @@ public class ReportProblemServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ReportProblemServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ReportProblemServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        ReportProblem reportP = Model.ReportProblem.getReportProblem(1);
+        String target = "/ReportProblem.jsp";
+        request.setAttribute("message", reportP);
+        getServletContext().getRequestDispatcher(target).forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +67,7 @@ public class ReportProblemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
