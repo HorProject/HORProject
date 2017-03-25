@@ -21,8 +21,9 @@ public class Problem {
             PreparedStatement ps = connect.prepareStatement(
                     "SELECT recordproblem.problemPast, recordproblem.problemCurrent, recordproblem.problemNow, problem.problemId, problem.problemName, status.statusName, status.statusId "
                             + "FROM recordproblem "
-                            + "INNER JOIN problem ON recordproblem.Cause_Problem_problemId = problem.problemId "
-                            + "INNER JOIN status ON recordproblem.Cause_status_statusId = status.statusId "
+                            + "INNER JOIN cause ON recordproblem.Cause_causeId = cause.causeId "
+                            + "INNER JOIN problem ON cause.Problem_problemId = problem.problemId "
+                            + "INNER JOIN STATUS ON cause.status_statusId = status.statusId "
                             + "WHERE recordproblem.Cause_causeId = ? ");
             ps.setInt(1,causeId);
             ResultSet result = ps.executeQuery();

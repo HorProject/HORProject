@@ -109,13 +109,11 @@ public class ReportProblem extends ProblemName{
                 record = ps.executeUpdate();
                 ps.close();
                 ps = connect.prepareStatement(
-                        "INSERT INTO recordproblem(problemPast, problemCurrent, problemNow, Cause_causeId, Cause_expense_expensesId, Cause_Problem_problemId, Cause_status_statusId)"
-                                + "VALUES (?, ?, ?, (SELECT MAX(causeId) FROM cause), (SELECT MAX(expensesId) FROM expense), ?, ?)");
+                        "INSERT INTO recordproblem(problemPast, problemCurrent, problemNow, Cause_causeId)"
+                                + "VALUES (?, ?, ?, (SELECT MAX(causeId) FROM cause))");
                 ps.setInt(1, 00);
                 ps.setInt(2, 00);
                 ps.setInt(3, 1);
-                ps.setInt(4, problemId);
-                ps.setInt(5, 1);
                 record = ps.executeUpdate();
                 ps.close();
             }
