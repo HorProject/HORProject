@@ -11,11 +11,11 @@ public class Problem {
     private int problemId;
     private int statusId;
     private String status;
-    private int room;
+    private int roomNo;
 
-    public Problem(int causeId, int room) {
+    public Problem(int causeId, int roomNo) {
         this.causeId = causeId;
-        this.room = room;
+        this.roomNo = roomNo;
         try {
             Connection connect = ConnectionBuilder.getConnection();
             PreparedStatement ps = connect.prepareStatement(
@@ -23,7 +23,7 @@ public class Problem {
                             + "FROM recordproblem "
                             + "INNER JOIN cause ON recordproblem.Cause_causeId = cause.causeId "
                             + "INNER JOIN problem ON cause.Problem_problemId = problem.problemId "
-                            + "INNER JOIN STATUS ON cause.status_statusId = status.statusId "
+                            + "INNER JOIN status ON cause.status_statusId = status.statusId "
                             + "WHERE recordproblem.Cause_causeId = ? ");
             ps.setInt(1,causeId);
             ResultSet result = ps.executeQuery();
@@ -31,6 +31,7 @@ public class Problem {
                 problemP = result.getInt("problemPast");
                 problemC = result.getInt("problemCurrent");
                 problemN = result.getInt("problemNow");
+                problemId = result.getInt("problemId");
                 name = result.getString("problemName");
                 status = result.getString("statusName");
                 statusId = result.getInt("statusId");
@@ -93,9 +94,9 @@ public class Problem {
         this.status = status;
     }
     public int getRoom() {
-        return room;
+        return roomNo;
     }
-    public void setRoom(int room) {
-        this.room = room;
+    public void setRoom(int roomNo) {
+        this.roomNo = roomNo;
     }
 }
