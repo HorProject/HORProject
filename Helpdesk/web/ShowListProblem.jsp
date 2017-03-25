@@ -24,10 +24,12 @@
                     <th>problem name</th>
                 </tr>
                 <% for(int i = 0; i < listP.getList().size(); i++) { %>
+                    <% if(listP.getList().get(i).getStatusId() != 3) { %>
                     <tr>
                         <td> <%= (i+1) %> </td>
                         <td> <%= listP.getList().get(i).getName() %> </td>
                     </tr>
+                    <% } %>
                 <% } %>
             <% } else { %>
                 <tr>
@@ -36,14 +38,15 @@
                     <th>room</th>
                 </tr>
                 <% for(int i = 0; i < listP.getList().size(); i++){ %>
-                    <tr>
-                        <td> <%= (i+1) %> </td>
-                        <td> <%= listP.getList().get(i).getName() %> </td>
-                        <td> <%= listP.getList().get(i).getRoom() %> </td>
-                    </tr>
+                    <% if(listP.getList().get(i).getStatusId() != 3) { %>
+                        <tr>
+                            <td> <%= (i+1) %> </td>
+                            <td> <%= listP.getList().get(i).getName() %> </td>
+                            <td> <%= listP.getList().get(i).getRoom() %> </td>
+                        </tr>
+                    <% } %>
                 <% } %>
             <% } %>
-            <tr></tr>
         </table>
     </body>
 </html>
