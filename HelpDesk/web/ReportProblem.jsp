@@ -16,14 +16,14 @@
         <h1>Report Problem</h1>
         <div>
             <ol>
-                <%for(int i = 0; i< reportP.getProblemName().size(); i++) { %>
-                    <% boolean have = false; %>
-                    <% for (int j = 0; j < reportP.getList().size(); j++) { %>
-                        <% if (reportP.getList().get(j).getProblemId() == (i+1)) { %>
-                            <% have = true; %>
-                            <% break; %>
-                        <% } %>
-                    <% } %>
+                <%for(int i = 0; i< reportP.getProblemName().size(); i++) { 
+                       boolean have = false; 
+                       for (int j = 0; j < reportP.getList().size(); j++) { 
+                           if (reportP.getList().get(j).getProblemId() == (i+1)) { 
+                               have = true; 
+                               break;  
+                           } 
+                        } %>
                     <% if(have) { %>
                         <% for (int j = 0; j < reportP.getList().size(); j++) { %>
                             <% if (reportP.getList().get(j).getProblemId() == (i+1)) { %>
