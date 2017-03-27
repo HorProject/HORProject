@@ -22,54 +22,56 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="center">List Problem</h1>
+                    <h1>List Problem</h1>
                 </div>
             </div>
             <div class="row">
                 <table class="table table-hover table-condensed table-responsive">
-                    <% int count = 1; %>
-                    <% if(listP.getStatus().equalsIgnoreCase("student")) { %>
+                    <% int count = 1;
+                    if(listP.getStatus().equalsIgnoreCase("student")) { %>
                         <thead>
                             <tr>
-                                <th class="center">#</th>
+                                <th class="text-center">#</th>
                                 <th>problem name</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(int i = 0; i < listP.getList().size(); i++) { %>
-                                <% if(listP.getList().get(i).getStatusId() != 3) { %>
+                            <% for(int i = 0; i < listP.getList().size(); i++) {
+                                if(listP.getList().get(i).getStatusId() != 3) { %>
                                     <tr>
-                                        <td class="center"><%= count++ %></td>
+                                        <td class="text-center"><%= count++ %></td>
                                         <td class="font-itim"><%= listP.getList().get(i).getName() %></td>
                                     </tr>
-                                <% } %>
-                            <% } %>
+                                <% }
+                            } %>
                         </tbody>
                     <% } else { %>
                         <thead>
                             <tr>
-                                <th class="center">#</th>
+                                <th class="test-center">#</th>
                                 <th>problem name</th>
                                 <th>room</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(int i = 0; i < listP.getList().size(); i++){ %>
-                                <% if(listP.getList().get(i).getStatusId() != 3) { %>
+                            <% for(int i = 0; i < listP.getList().size(); i++) {
+                                if(listP.getList().get(i).getStatusId() != 3) { %>
                                     <tr>
-                                        <td class="center"><%= count++ %></td>
+                                        <td class="text-center"><%= count++ %></td>
                                         <td class="font-itim"><%= listP.getList().get(i).getName() %></td>
                                         <td><%= listP.getList().get(i).getRoom() %></td>
                                     </tr>
-                                <% } %>
-                            <% } %>
+                                <% }
+                            } %>
                         </tbody>
                     <% } %>
                 </table>
             </div>
             <div class="row">
-                <div class="col-md-12 right">
-                    <button class="btn btn-lg btn-default" id="back">กลับสู่เมนูหลัก</button>
+                <div class="col-md-12 text-right">
+                    <a href="#" target="_self">
+                        <button class="btn btn-lg btn-default" id="back">กลับสู่เมนูหลัก</button>
+                    </a>
                 </div>
             </div>
         </div>

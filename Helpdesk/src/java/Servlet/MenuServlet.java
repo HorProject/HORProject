@@ -5,7 +5,6 @@
  */
 package Servlet;
 
-import Model.ListProblem;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-public class ListProblemServlet extends HttpServlet {
+public class MenuServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,10 +30,8 @@ public class ListProblemServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        ListProblem listP = Model.ListProblem.getShowListProblem(1);
-        String target = "/ShowListProblem.jsp";
-        request.setAttribute("message", listP);
+        
+        String target = "/Menu.jsp";
         getServletContext().getRequestDispatcher(target).forward(request, response);
     }
 

@@ -11,12 +11,6 @@ body {
     font-size: 16px;
     background-color: #9EDFDE;
 }
-.center {
-    text-align: center;
-}
-.right {
-    text-align: right;
-}
 .font-siracha {
     font-family: 'Sriracha', cursive;
 }
@@ -31,4 +25,7 @@ body {
 }
 .bg-white {
     background-color: #FFFFFF;
+}
+.menu-list {
+    font-size: 1.5em;
 }
