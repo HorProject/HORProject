@@ -5,7 +5,6 @@
  */
 package Servlet;
 
-
 import Model.ReportProblem;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,7 +36,6 @@ public class ReportProblemServlet extends HttpServlet {
         String target = "/ReportProblem.jsp";
         request.setAttribute("message", reportP);
         getServletContext().getRequestDispatcher(target).forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

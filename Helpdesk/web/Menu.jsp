@@ -15,22 +15,21 @@
         <link href="https://fonts.googleapis.com/css?family=Itim|Sriracha" rel="stylesheet">
     </head>
     <body>
+        <% long userId = 1; %>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="font-siracha">Menu</h1>
                 </div>
             </div>
-            <a href="#">
-                <div class="row">
-                    <div class="col-md-6 font-itim menu-list">
+            <div class="row list-group menu-list font-itim">
+                <a href="#" target="_self">
+                    <div class="list-group-item col-md-12">
                         แสดงรายการแจ้งปัญหา
-                    </div>
-                    <div class="col-md-1 col-md-offset-2">
                         <img src="assets/img/arrows.png" alt="icon">
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </body>
 </html>

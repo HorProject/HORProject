@@ -3,10 +3,10 @@ package Model;
 import java.sql.*;
 
 public class ConnectionBuilder {
-    private static final String host = "sql12.freemysqlhosting.net";
-    private static final String dbName = "sql12164714";
-    private static final String username = "sql12164714";
-    private static final String password = "KkiSNdavSE";
+    private static final String host = "http://10.4.56.26";
+    private static final String dbName = "hor";
+    private static final String username = "hor";
+    private static final String password = "hor";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException{
         Connection con;

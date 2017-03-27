@@ -27,5 +27,16 @@ body {
     background-color: #FFFFFF;
 }
 .menu-list {
-    font-size: 1.5em;
+    font-size: 1.3em;
+}
+.menu-list img {
+    float: right;
+}
+a:link {
+    color: #000;
+    text-decoration: none;
+}
+a:active {
+    color: #000;
+    text-decoration: none;
 }
