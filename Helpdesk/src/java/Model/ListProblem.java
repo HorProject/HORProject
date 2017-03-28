@@ -18,7 +18,7 @@ public class ListProblem {
         this.userId = userId;
         try {
             Connection connect = ConnectionBuilder.getConnection();
-            PreparedStatement ps = connect.prepareStatement("SELECT userType, userFirstName, userLastName FROM user WHERE userId = ?");
+            PreparedStatement ps = connect.prepareStatement("SELECT userType, userFirstName, userLastName FROM User WHERE userId = ?");
             ps.setLong(1,userId);
             ResultSet result = ps.executeQuery();
             while(result.next()){
@@ -29,24 +29,24 @@ public class ListProblem {
             ps.close();
             if(status.equalsIgnoreCase("student")){
                 ps = connect.prepareStatement(
-                        "SELECT user.userId, renter.renterId, renter_has_room.Room_roomId, room.roomNo, cause.causeId, cause.Problem_problemId "
-                                + "FROM user "
-                                + "INNER JOIN renter ON user.userId = renter.renterId "
-                                + "INNER JOIN renter_has_room ON renter.renterId = renter_has_room.Renter_renterId "
-                                + "INNER JOIN room ON renter_has_room.Room_roomId = room.roomId "
-                                + "INNER JOIN cause ON room.roomId = cause.Room_roomId "
+                        "SELECT User.userId, Renter.renterId, Renter_has_Room.Room_roomId, Room.roomNo, Cause.causeId, Cause.Problem_problemId "
+                                + "FROM User "
+                                + "INNER JOIN Renter ON User.userId = Renter.renterId "
+                                + "INNER JOIN Renter_has_room ON Renter.renterId = Renter_has_Room.Renter_renterId "
+                                + "INNER JOIN Room ON Renter_has_Room.Room_roomId = Room.roomId "
+                                + "INNER JOIN Cause ON Room.roomId = Cause.Room_roomId "
                                 + "WHERE userId = ? "
-                                + "ORDER BY cause.Problem_problemId");
+                                + "ORDER BY Cause.Problem_problemId");
             }
             else {
                 ps = connect.prepareStatement(
-                        "SELECT user.userId, dormitory.dormId, room.roomNo, cause.causeId, cause.Room_roomId, cause.Problem_problemId "
-                                + "FROM user "
-                                + "INNER JOIN dormitory ON user.userId = dormitory.User_userId "
-                                + "INNER JOIN room ON dormitory.dormId = room.Dormitory_dormId "
-                                + "INNER JOIN cause ON room.Dormitory_dormId = cause.Room_Dormitory_dormId "
+                        "SELECT User.userId, Dormitory.dormId, Room.roomNo, Cause.causeId, Cause.Room_roomId, Cause.Problem_problemId "
+                                + "FROM User "
+                                + "INNER JOIN Dormitory ON User.userId = Uormitory.User_userId "
+                                + "INNER JOIN Room ON Dormitory.dormId = Room.Dormitory_dormId "
+                                + "INNER JOIN Cause ON Room.Dormitory_dormId = Cause.Room_Dormitory_dormId "
                                 + "WHERE userId = ? "
-                                + "ORDER BY cause.Room_roomId, cause.Problem_problemId");
+                                + "ORDER BY Cause.Room_roomId, Cause.Problem_problemId");
             }
             ps.setLong(1,userId);
             result = ps.executeQuery();

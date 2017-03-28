@@ -19,12 +19,12 @@ public class Problem {
         try {
             Connection connect = ConnectionBuilder.getConnection();
             PreparedStatement ps = connect.prepareStatement(
-                    "SELECT recordproblem.problemPast, recordproblem.problemCurrent, recordproblem.problemNow, problem.problemId, problem.problemName, status.statusName, status.statusId "
-                            + "FROM recordproblem "
-                            + "INNER JOIN cause ON recordproblem.Cause_causeId = cause.causeId "
-                            + "INNER JOIN problem ON cause.Problem_problemId = problem.problemId "
-                            + "INNER JOIN status ON cause.status_statusId = status.statusId "
-                            + "WHERE recordproblem.Cause_causeId = ? ");
+                    "SELECT RecordProblem.problemPast, RecordProblem.problemCurrent, RecordProblem.problemNow, Problem.problemId, Problem.problemName, status.statusName, status.statusId "
+                            + "FROM RecordProblem "
+                            + "INNER JOIN Cause ON RecordProblem.Cause_causeId = Cause.causeId "
+                            + "INNER JOIN Problem ON Cause.Problem_problemId = Problem.problemId "
+                            + "INNER JOIN status ON Cause.status_statusId = status.statusId "
+                            + "WHERE RecordProblem.Cause_causeId = ? ");
             ps.setInt(1,causeId);
             ResultSet result = ps.executeQuery();
             while(result.next()){

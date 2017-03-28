@@ -17,7 +17,7 @@ public class ReportProblem extends ProblemName{
         this.userId = userId;
         try{
             Connection connect = ConnectionBuilder.getConnection();
-            PreparedStatement ps = connect.prepareStatement("SELECT  user.userFirstName , user.userLastName FROM user WHERE userId = ?");
+            PreparedStatement ps = connect.prepareStatement("SELECT  User.userFirstName , User.userLastName FROM User WHERE userId = ?");
             ps.setLong(1,userId);
             ResultSet result = ps.executeQuery();
             while(result.next()){
@@ -26,11 +26,11 @@ public class ReportProblem extends ProblemName{
             }
             ps.close();
             ps = connect.prepareStatement(
-                    "SELECT user.userId, room.roomId, room.roomNo, room.Dormitory_dormId "
-                            + "FROM user "
-                            + "INNER JOIN renter ON user.userId = renter.User_userId "
-                            + "INNER JOIN renter_has_room ON renter.renterId = renter_has_room.Renter_renterId "
-                            + "INNER JOIN room ON renter_has_room.Room_roomId = room.roomId "
+                    "SELECT User.userId, Room.roomId, Room.roomNo, Room.Dormitory_dormId "
+                            + "FROM User "
+                            + "INNER JOIN Renter ON User.userId = Renter.User_userId "
+                            + "INNER JOIN Renter_has_Room ON Renter.renterId = Renter_has_Room.Renter_renterId "
+                            + "INNER JOIN Room ON Renter_has_Room.Room_roomId = Room.roomId "
                             + "WHERE userId = ?");
             ps.setLong(1,userId);
             result = ps.executeQuery();
@@ -75,7 +75,7 @@ public class ReportProblem extends ProblemName{
                     }
                 }
                 ps = connect.prepareStatement(
-                        "UPDATE cause "
+                        "UPDATE Cause "
                                 + "SET status_statusId = ? "
                                 + "WHERE = ?");
                 ps.setInt(1, 1);
@@ -84,7 +84,7 @@ public class ReportProblem extends ProblemName{
                 ps.close();
                 problemC += problemN;
                 ps = connect.prepareStatement(
-                        "UPDATE recordProblem "
+                        "UPDATE RecordProblem "
                                 + "SET problemCurrent = ? , problemNow = ? "
                                 + "WHERE = ?");
                 ps.setInt(1,problemC);
@@ -100,7 +100,7 @@ public class ReportProblem extends ProblemName{
                 int record = ps.executeUpdate();
                 ps.close();
                 ps = connect.prepareStatement(
-                        "INSERT INTO cause(causeId , expense_expensesId , Problem_problemId , status_statusId , Room_roomId , Room_Dormitory_dormId)"
+                        "INSERT INTO Cause(causeId , expense_expensesId , Problem_problemId , status_statusId , Room_roomId , Room_Dormitory_dormId)"
                                 + "VALUES (null,(SELECT MAX(expensesId) FROM expense),?,?,?,?)");
                 ps.setInt(1, problemId);
                 ps.setInt(2, 1);
@@ -109,7 +109,7 @@ public class ReportProblem extends ProblemName{
                 record = ps.executeUpdate();
                 ps.close();
                 ps = connect.prepareStatement(
-                        "INSERT INTO recordproblem(problemPast, problemCurrent, problemNow, Cause_causeId)"
+                        "INSERT INTO RecordProblem(problemPast, problemCurrent, problemNow, Cause_causeId)"
                                 + "VALUES (?, ?, ?, (SELECT MAX(causeId) FROM cause))");
                 ps.setInt(1, 00);
                 ps.setInt(2, 00);

@@ -19,7 +19,7 @@ public class ProblemName {
         problemName = new ArrayList<String>();
         try {
             Connection connect = ConnectionBuilder.getConnection();
-            PreparedStatement ps = connect.prepareStatement("SELECT problemName FROM problem");       
+            PreparedStatement ps = connect.prepareStatement("SELECT problemName FROM Problem");       
             ResultSet result = ps.executeQuery();           
             while(result.next()){
                 problemName.add(result.getString("problemName"));
