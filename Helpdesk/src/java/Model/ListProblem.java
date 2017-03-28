@@ -29,20 +29,20 @@ public class ListProblem {
             ps.close();
             if(status.equalsIgnoreCase("student")){
                 ps = connect.prepareStatement(
-                        "SELECT User.userId, Renter.renterId, Renter_has_Room.Room_roomId, Room.roomNo, Cause.causeId, Cause.Problem_problemId "
+                        "SELECT User.userId, Room.roomNo, Cause.causeId, Cause.Problem_problemId "
                                 + "FROM User "
-                                + "INNER JOIN Renter ON User.userId = Renter.renterId "
-                                + "INNER JOIN Renter_has_room ON Renter.renterId = Renter_has_Room.Renter_renterId "
+                                + "INNER JOIN Renter ON User.userId = Renter.User_userId "
+                                + "INNER JOIN Renter_has_Room ON Renter.renterId = Renter_has_Room.Renter_renterId "
                                 + "INNER JOIN Room ON Renter_has_Room.Room_roomId = Room.roomId "
                                 + "INNER JOIN Cause ON Room.roomId = Cause.Room_roomId "
-                                + "WHERE userId = ? "
+                                + "WHERE User.userId = ? "
                                 + "ORDER BY Cause.Problem_problemId");
             }
             else {
                 ps = connect.prepareStatement(
                         "SELECT User.userId, Dormitory.dormId, Room.roomNo, Cause.causeId, Cause.Room_roomId, Cause.Problem_problemId "
                                 + "FROM User "
-                                + "INNER JOIN Dormitory ON User.userId = Uormitory.User_userId "
+                                + "INNER JOIN Dormitory ON User.userId = Dormitory.User_userId "
                                 + "INNER JOIN Room ON Dormitory.dormId = Room.Dormitory_dormId "
                                 + "INNER JOIN Cause ON Room.Dormitory_dormId = Cause.Room_Dormitory_dormId "
                                 + "WHERE userId = ? "
