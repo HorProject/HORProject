@@ -1,0 +1,61 @@
+body{
+  background-color: #f4f4f4;
+  color:#373737;
+}
+table{
+    display: block;
+    border-spacing: 50px 0;
+}
+#Detail{
+  font-weight: 200px;
+}
+h2{
+  color:#373737;
+  text-align: center;
+}
+#image{
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+}
+h1{
+  text-align: center;
+  font-family: Enjoy the Ride;
+  font-size: 40pt;
+}
+#SearchPrice{
+  text-align: center;
+  display: block;
+  font-variant: initial;
+}
+#SearchName{
+  text-align: center;
+  display: block;
+  font-variant: initial;
+}
+.Nav ul{
+  font-family: DB Helvethaica X 65 Med;
+  list-style: none;
+  text-align: center;
+  margin-top: 17px;
+  padding: 0px;
+  font-size: 14pt;
+  font-weight: bold;
+}
+.Nav li{
+  line-height: 40px;
+  display: inline-block;
+  border-bottom: 1px solid #373737;
+}
+.Nav a{
+  display: block;
+  color:#373737;
+  text-decoration: none;
+  width: 250px;
+  height: 40px;
+  transform: .3s background-color;
+}
+.Nav a:hover{
+  background-color: #373737;
+  color: #f4f4f4;
+}
